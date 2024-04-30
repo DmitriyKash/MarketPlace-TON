@@ -7,7 +7,7 @@ import { TonConnectUIProvider } from '@tonconnect/ui-react';
 
 function App() {
     return (
-        <TonConnectUIProvider manifestUrl="https://master--harmonious-fenglisu-6d5f55.netlify.app/tonconnect-manifest.json">
+        <TonConnectUIProvider manifestUrl="https://harmonious-fenglisu-6d5f55.netlify.app/tonconnect-manifest.json">
             <Router>
                 <Navbar />
                 <Routes>
