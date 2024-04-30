@@ -1,8 +1,7 @@
 {
-    "name": "Marketplace",
-    "description": "A simple marketplace application",
-    "url": "https://harmonious-fenglisu-6d5f55.netlify.app",
-    "icon": "https://harmonious-fenglisu-6d5f55.netlify.app/icon.png",
-    "permissions": ["tonconnect"]
-  }
-  
+  "name": "Marketplace",
+  "description": "A simple marketplace application",
+  "url": "https://harmonious-fenglisu-6d5f55.netlify.app",
+  "iconUrl": "https://harmonious-fenglisu-6d5f55.netlify.app/icon.png",
+  "permissions": ["tonconnect"]
+}
