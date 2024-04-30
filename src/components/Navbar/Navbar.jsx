@@ -9,8 +9,6 @@ const Navbar = () => {
             <div className={styles.navbarBrand}>Marketplace</div>
             <div className={styles.navbarLinks}>
                 <Link to="/">Home</Link>
-                <Link to="/about">About</Link>
-                <Link to="/contact">Contact</Link>
             </div>
             <TonConnectButton />
         </nav>

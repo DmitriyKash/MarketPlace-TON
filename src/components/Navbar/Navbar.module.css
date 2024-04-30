@@ -30,3 +30,15 @@
     gap: 10px;
   }
   
+  /* Допустим, что кнопка рендерится в элемент с классом 'ton-connect-btn' */
+.ton-connect-btn {
+    background-color: #0044cc; /* Изменение цвета фона */
+    color: white; /* Изменение цвета текста */
+    border-radius: 8px; /* Скругление углов */
+    padding: 10px 20px; /* Паддинги */
+    font-weight: bold; /* Жирное начертание текста */
+}
+
+.ton-connect-btn:hover {
+    background-color: #002288; /* Цвет фона при наведении */
+}
