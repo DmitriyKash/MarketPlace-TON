@@ -1,0 +1,8 @@
+{
+    "name": "Marketplace",
+    "description": "A simple marketplace application",
+    "url": "https://your-app-url.com",
+    "icon": "https://your-app-url.com/icon.png",
+    "permissions": ["tonconnect"]
+  }
+  
