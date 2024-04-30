@@ -1,0 +1,8 @@
+{
+    "name": "Marketplace",
+    "description": "A simple marketplace application",
+    "url": "https://master--harmonious-fenglisu-6d5f55.netlify.app",
+    "icon": "https://master--harmonious-fenglisu-6d5f55.netlify.app/icon.png",
+    "permissions": ["tonconnect"]
+  }
+  
