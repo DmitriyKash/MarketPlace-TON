@@ -16,7 +16,7 @@ function Login() {
     };
 
     const registerUser = (address) => {
-        fetch('http://localhost:3000/api/auth/login', {
+        fetch('http://51.20.143.48:3000/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -29,6 +29,7 @@ function Login() {
             console.error('Error:', error);
         });
     };
+    
     
 
     return (
