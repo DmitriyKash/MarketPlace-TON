@@ -1,0 +1,15 @@
+// {
+//   "name": "Marketplace",
+//   "description": "A simple marketplace application",
+//   "url": "https://harmonious-fenglisu-6d5f55.netlify.app",
+//   "iconUrl": "https://harmonious-fenglisu-6d5f55.netlify.app/icon.png",
+//   "permissions": ["tonconnect"]
+// }
+
+{
+  "url": "http://localhost:3000",
+  "name": "Local TON Connect App", 
+  "iconUrl": "http://localhost:3000/icon.png", 
+  "termsOfUseUrl": "http://localhost:3000/terms", 
+  "privacyPolicyUrl": "http://localhost:3000/privacy" 
+}

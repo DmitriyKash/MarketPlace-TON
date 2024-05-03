@@ -7,6 +7,7 @@ function Login() {
     const handleLogin = async () => {
         try {
             await connect();
+            console.log(wallet); // Проверка объекта wallet
             if (wallet) {
                 registerUser(wallet.address);
             }
@@ -16,7 +17,7 @@ function Login() {
     };
 
     const registerUser = (address) => {
-        fetch('http://51.20.143.48:3000/api/auth/login', {
+        fetch('http://localhost:3000/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -40,3 +41,5 @@ function Login() {
 }
 
 export default Login;
+
+
