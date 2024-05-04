@@ -27,7 +27,7 @@ function Header() {
         <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleDrawer}>
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" style={{ flexGrow: 1 }} onClick={handleHomeClick} style={{ cursor: 'pointer' }}>
+        <Typography variant="h6" style={{ flexGrow: 1, cursor: 'pointer' }} onClick={handleHomeClick}>
           Мой Маркетплейс
         </Typography>
         <Login />
