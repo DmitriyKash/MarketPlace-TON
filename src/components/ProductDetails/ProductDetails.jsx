@@ -6,11 +6,12 @@ import Header from '../Header/Header';
 import LoginDialog from '../LoginDialog/LoginDialog'; // Импортируйте LoginDialog
 
 
+
 function ProductDetails() {
   const { id } = useParams();
   const [size, setSize] = useState('');
+  const { user, isAuthenticated } = useAuth();
   const [loginDialogOpen, setLoginDialogOpen] = useState(false);
-  const isAuthenticated = false; // Это состояние должно получать реальное значение из вашей аутентификации
 
   const tempProducts = [
     { id: 1, title: 'Apple MacBook Pro', description: '16-inch, 16GB RAM', image: 'path/to/image1.jpg', lotInfo: 'Лот #123456, доступно 5 штук', shippingInfo: 'Доставка в течение 3-5 рабочих дней' },
