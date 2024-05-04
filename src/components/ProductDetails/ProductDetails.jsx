@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Typography, Select, MenuItem, Accordion, AccordionSummary, AccordionDetails, Box } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Header from '../Header/Header';
 
 function ProductDetails() {
   const { id } = useParams(); // Получение ID из URL
@@ -47,57 +48,60 @@ function ProductDetails() {
   }
 
   return (
-    <Box sx={{ p: 2, border: '1px solid #ccc', maxWidth: 400, margin: 'auto' }}>
-      <Typography variant="h5" gutterBottom>
-        {product.title}
-      </Typography>
-      <Typography variant="h6" gutterBottom>
-        {product.description}
-      </Typography>
-      <Select
-        value={size}
-        onChange={handleChangeSize}
-        displayEmpty
-        inputProps={{ 'aria-label': 'Without label' }}
-      >
-        <MenuItem value="">Выберите размер</MenuItem>
-        <MenuItem value={'L'}>L</MenuItem>
-        <MenuItem value={'XL'}>XL</MenuItem>
-      </Select>
-      <Button variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
-        КУПИТЬ
-      </Button>
-      <Accordion sx={{ mt: 2 }}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>Описание</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
+    <>
+    <Header />
+        <Box sx={{ p: 2, border: '1px solid #ccc', maxWidth: 400, margin: 'auto' }}>
+        <Typography variant="h5" gutterBottom>
+            {product.title}
+        </Typography>
+        <Typography variant="h6" gutterBottom>
             {product.description}
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion sx={{ mt: 2 }}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>Лот</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            {product.lotInfo}
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion sx={{ mt: 2 }}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>Доставка</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            {product.shippingInfo}
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-    </Box>
+        </Typography>
+        <Select
+            value={size}
+            onChange={handleChangeSize}
+            displayEmpty
+            inputProps={{ 'aria-label': 'Without label' }}
+        >
+            <MenuItem value="">Выберите размер</MenuItem>
+            <MenuItem value={'L'}>L</MenuItem>
+            <MenuItem value={'XL'}>XL</MenuItem>
+        </Select>
+        <Button variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
+            КУПИТЬ
+        </Button>
+        <Accordion sx={{ mt: 2 }}>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography>Описание</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+            <Typography>
+                {product.description}
+            </Typography>
+            </AccordionDetails>
+        </Accordion>
+        <Accordion sx={{ mt: 2 }}>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography>Лот</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+            <Typography>
+                {product.lotInfo}
+            </Typography>
+            </AccordionDetails>
+        </Accordion>
+        <Accordion sx={{ mt: 2 }}>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography>Доставка</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+            <Typography>
+                {product.shippingInfo}
+            </Typography>
+            </AccordionDetails>
+        </Accordion>
+        </Box>
+    </>
   );
 }
 
