@@ -32,7 +32,8 @@ import { TonConnectUIProvider } from '@tonconnect/ui-react';
 // import CheckoutPage from './pages/CheckoutPage';
 // import AdminPage from './pages/AdminPage';
 import { CartProvider } from './pages/CartContext'; // Ensure this import is correct
-import { AuthProvider } from './components/AuthContext/AuthContext';
+import AuthProvider from './components/AuthContext/AuthContext';
+
 
 
 function App() {
