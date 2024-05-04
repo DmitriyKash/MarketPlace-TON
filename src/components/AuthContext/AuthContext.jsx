@@ -4,16 +4,20 @@ import { useTonAddress } from '@tonconnect/ui-react';
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-    const [userAddress, setUserAddress] = useState(useTonAddress(true));
+    const userAddress = useTonAddress(true); // Вызовите useTonAddress на верхнем уровне компонента
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
-        // Обновление адреса при изменении состояния подключения кошелька
-        const address = useTonAddress(true);
-        setUserAddress(address);
-    }, [useTonAddress(true)]);
+        // В этом useEffect, мы просто реагируем на изменения userAddress.
+        if (userAddress) {
+            setIsAuthenticated(true);
+        } else {
+            setIsAuthenticated(false);
+        }
+    }, [userAddress]); // Зависимость от userAddress
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated: !!userAddress, userAddress }}>
+        <AuthContext.Provider value={{ isAuthenticated, userAddress }}>
             {children}
         </AuthContext.Provider>
     );
