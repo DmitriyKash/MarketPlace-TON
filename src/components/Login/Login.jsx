@@ -17,7 +17,7 @@ function Login() {
     };
 
     const registerUser = (address) => {
-        fetch('http://localhost:3000/api/auth/login', {
+        fetch('https://1a75-37-57-145-64.ngrok-free.app/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
