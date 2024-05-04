@@ -1,22 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { TonConnectButton, useTonConnectUI } from '@tonconnect/ui-react';
 
 function Login() {
     const { connect, wallet } = useTonConnectUI();
 
+    useEffect(() => {
+        if (wallet && wallet.address) {
+            saveUser(wallet.address);
+        }
+    }, [wallet]);
+
     const handleLogin = async () => {
         try {
             await connect();
-            if (wallet) {
-                saveUser(wallet.address);
-            }
         } catch (error) {
             console.error('Login failed:', error);
         }
     };
 
     const saveUser = (address) => {
-        fetch('https://https://1a75-37-57-145-64.ngrok-free.app/api/auth/login', {
+        fetch('https://1a75-37-57-145-64.ngrok-free.app/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
