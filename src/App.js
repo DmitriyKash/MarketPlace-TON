@@ -40,6 +40,7 @@ function App() {
             <div className="App">
             <Routes>
                 <Route path="/" element={<HomePage />} />
+                <Route path="/product/:id" element={<ProductDetails />} />
                 {/* <Route path="/profile" element={<ProfilePage />} /> */}
                 {/* <Route path="/cart" element={<CartPage />} /> */}
                 {/* <Route path="/checkout" element={<CheckoutPage />} /> */}
