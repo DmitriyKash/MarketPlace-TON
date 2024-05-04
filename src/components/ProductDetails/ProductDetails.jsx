@@ -4,7 +4,7 @@ import { Button, Typography, Select, MenuItem, Accordion, AccordionSummary, Acco
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Header from '../Header/Header';
 import LoginDialog from '../LoginDialog/LoginDialog'; // Импортируйте LoginDialog
-
+import { useAuth } from '../AuthContext/AuthContext';
 
 
 function ProductDetails() {
