@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import TextField from '@mui/material/TextField';
+import SearchIcon from '@mui/icons-material/Search';
+import InputAdornment from '@mui/material/InputAdornment';
 
 function SearchBar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -9,11 +12,20 @@ function SearchBar({ onSearch }) {
   };
 
   return (
-    <input
+    <TextField
       type="text"
       placeholder="Поиск товаров..."
+      variant="outlined"
       value={searchTerm}
       onChange={handleSearchChange}
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <SearchIcon />
+          </InputAdornment>
+        ),
+      }}
+      fullWidth
     />
   );
 }
