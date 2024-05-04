@@ -1,12 +1,13 @@
 import React from 'react';
 import ProfileForm from './ProfileForm';
+import Navigation from './Navigation'; // Assuming Navigation is a separate component
 
 function ProfilePage() {
   return (
     <div>
       <header>
         <h1>Профиль пользователя</h1>
-        {/* Меню навигации (если необходимо) */}
+        <Navigation />
       </header>
       <main>
         {/* Секция с данными пользователя */}

@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import Navigation from './Navigation';
+import { useCart } from './CartContext'; // Ensure this is the correct path
 
-function CheckoutPage({ cartItems }) {
+function CheckoutPage() {
+  const { cartItems, clearCart } = useCart(); // Access cart items and clearCart function from context
   const [formData, setFormData] = useState({
     name: '',
     address: '',
     email: '',
-    // Добавьте другие поля, если необходимо
+    phone: '',
   });
+
+  // Calculate total cost
+  const totalCost = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,8 +24,11 @@ function CheckoutPage({ cartItems }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Здесь вы можете отправить данные на сервер для обработки заказа
-    console.log(formData);
+    // Optionally, you could add a confirmation step before clearing the cart
+    console.log('Submitting Order:', formData, 'Total Cost:', totalCost);
+    clearCart();
+    alert('Order submitted! Check console for details.');
+    // Here you might send the data to a server via an API call
   };
 
   return (
@@ -32,14 +40,21 @@ function CheckoutPage({ cartItems }) {
       <main>
         <section>
           <h2>Ваш заказ</h2>
-          <ul>
-            {cartItems.map(item => (
-              <li key={item.id}>
-                <h3>{item.title}</h3>
-                <p>Количество: {item.quantity}</p>
-              </li>
-            ))}
-          </ul>
+          {cartItems.length > 0 ? (
+            <>
+            <ul>
+              {cartItems.map(item => (
+                <li key={item.id}>
+                  <h3>{item.title}</h3>
+                  <p>Количество: {item.quantity}</p>
+                  <p>Цена за шт.: ${item.price}</p>
+                </li>
+              ))}
+              </ul>
+            <h3>Общая стоимость: ${totalCost}</h3>
+          </>) : (
+            <p>Ваша корзина пуста.</p>
+          )}
         </section>
         <section>
           <h2>Данные для доставки</h2>
@@ -56,11 +71,13 @@ function CheckoutPage({ cartItems }) {
               <label htmlFor="email">Email:</label>
               <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} />
             </div>
-            {/* Добавьте другие поля формы здесь */}
+            <div>
+              <label htmlFor="phone">Телефон:</label>
+              <input type="text" id="phone" name="phone" value={formData.phone} onChange={handleChange} />
+            </div>
             <button type="submit">Оформить заказ</button>
           </form>
         </section>
-        {/* Другие разделы оформления заказа */}
       </main>
       <footer>
         <p>© 2024 TON Marketplace. All rights reserved.</p>

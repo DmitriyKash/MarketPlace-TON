@@ -1,62 +1,62 @@
 import React, { useState } from 'react';
-import ProductList from './ProductList'; // Импортируем компонент ProductList
-import ProductEditForm from './ProductEditForm'; // Импортируем компонент ProductEditForm
+import ProductList from './ProductList';
+import ProductEditForm from './ProductEditForm';
 
 function AdminPage() {
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    price: '',
-    // Добавьте другие поля, если необходимо
-  });
+  const [products, setProducts] = useState([]);
+  const [editingProductId, setEditingProductId] = useState(null); // Track the ID of the product being edited
+  const [formData, setFormData] = useState({ title: '', description: '', price: '' });
 
-  const [products, setProducts] = useState([
-    // Исходный список товаров, замените его на реальные данные
-    { id: 1, title: 'Товар 1', description: 'Описание товара 1', price: 10 },
-    { id: 2, title: 'Товар 2', description: 'Описание товара 2', price: 20 },
-    { id: 3, title: 'Товар 3', description: 'Описание товара 3', price: 30 },
-  ]);
+  const handleNewProduct = () => {
+    setEditingProductId(null); // Clear any editing product ID
+    setFormData({ title: '', description: '', price: '' }); // Reset form for new product
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
+    setFormData(prevFormData => ({
+      ...prevFormData,
       [name]: value
     }));
+    if (editingProductId) {
+      setProducts(prevProducts => prevProducts.map(product => 
+        product.id === editingProductId ? { ...product, [name]: value } : product
+      ));
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Здесь вы можете отправить данные на сервер для добавления нового товара
-    console.log(formData);
-    // После добавления товара можно сбросить форму
-    setFormData({
-      title: '',
-      description: '',
-      price: '',
-    });
+    const newProduct = { ...formData, id: Date.now() }; // Create a new product with a unique ID
+    if (editingProductId) {
+      handleUpdateProduct(editingProductId);
+    } else {
+      setProducts(prevProducts => [...prevProducts, newProduct]);
+    }
+    handleNewProduct(); // Reset form after submission
   };
 
   const handleDeleteProduct = (productId) => {
-    // Логика удаления товара
-    // Обновите products, удалив товар с указанным productId
     setProducts(prevProducts => prevProducts.filter(product => product.id !== productId));
   };
 
-  const handleUpdateProduct = (updatedProduct) => {
-    // Логика обновления товара
-    // Обновите products, заменив товар с указанным id на updatedProduct
-    setProducts(prevProducts => prevProducts.map(product => {
-      if (product.id === updatedProduct.id) {
-        return updatedProduct;
-      }
-      return product;
-    }));
+  const handleEditProduct = (productId) => {
+    const product = products.find(p => p.id === productId);
+    setFormData(product);
+    setEditingProductId(productId);
+  };
+
+  const handleUpdateProduct = (productId) => {
+    setProducts(prevProducts => prevProducts.map(product => 
+      product.id === productId ? { ...formData, id: productId } : product
+    ));
+    setEditingProductId(null);
   };
 
   return (
     <div>
       <h1>Панель администратора</h1>
+      <button onClick={handleNewProduct}>Add New Product</button>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="title">Название товара:</label>
@@ -70,15 +70,18 @@ function AdminPage() {
           <label htmlFor="price">Цена:</label>
           <input type="text" id="price" name="price" value={formData.price} onChange={handleChange} />
         </div>
-        {/* Добавьте другие поля формы здесь */}
-        <button type="submit">Добавить товар</button>
+        <button type="submit">Save Product</button>
       </form>
       
-      {/* Добавляем компонент ProductList с передачей списка товаров и функции удаления */}
-      <ProductList products={products} onDelete={handleDeleteProduct} />
+      <ProductList products={products} onDelete={handleDeleteProduct} onEdit={handleEditProduct} isAdmin={true} />
 
-      {/* Добавляем компонент ProductEditForm для редактирования товаров */}
-      <ProductEditForm product={formData} onUpdate={handleUpdateProduct} />
+      {editingProductId && (
+        <ProductEditForm
+          product={formData}
+          onChange={handleChange}
+          onSubmit={() => handleUpdateProduct(editingProductId)}
+        />
+      )}
     </div>
   );
 }
