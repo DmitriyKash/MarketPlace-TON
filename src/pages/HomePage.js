@@ -9,16 +9,16 @@ function HomePage() {
   // const [filteredProducts, setFilteredProducts] = useState([]);
 
   // Загрузка данных о продуктах
-  useEffect(() => {
-    // Здесь должен быть вызов API для получения продуктов
-    const fetchProducts = async () => {
-      const response = await fetch('/api/products'); // Примерный URL
-      const data = await response.json();
-      setProducts(data);
-      setFilteredProducts(data); // Инициализируем отфильтрованные продукты полным списком
-    };
-    fetchProducts();
-  }, []);
+  // useEffect(() => {
+  //   // Здесь должен быть вызов API для получения продуктов
+  //   const fetchProducts = async () => {
+  //     const response = await fetch('/api/products'); // Примерный URL
+  //     const data = await response.json();
+  //     setProducts(data);
+  //     setFilteredProducts(data); // Инициализируем отфильтрованные продукты полным списком
+  //   };
+  //   fetchProducts();
+  // }, []);
 
 
   // const handleFilterChange = (value) => {
