@@ -10,7 +10,7 @@ import { useAuth } from '../AuthContext/AuthContext';
 function ProductDetails() {
   const { id } = useParams();
   const [size, setSize] = useState('');
-  const { user, isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth();
   const [loginDialogOpen, setLoginDialogOpen] = useState(false);
 
   const tempProducts = [
