@@ -25,6 +25,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import HomePage from './pages/HomePage';
+import ProductDetails from'./components/ProductDetails/ProductDetails';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 // import ProfilePage from './pages/ProfilePage';
 // import CartPage from './pages/CartPage';
