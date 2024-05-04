@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
+import { Card, CardActionArea, CardContent, CardMedia, Typography, TextField } from '@mui/material';
 
 function ProductList() {
   const navigate = useNavigate(); // Хук для навигации
+  const [searchTerm, setSearchTerm] = useState('');
   const tempProducts = [
     { 
       id: 1, 
@@ -31,13 +32,29 @@ function ProductList() {
     }
   ];
 
+  const filteredProducts = tempProducts.filter(product =>
+    product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    product.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   const handleCardClick = (id) => {
     navigate(`/product/${id}`); // Перенаправление на страницу деталей продукта
   };
 
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-      {tempProducts.map((product) => (
+      <TextField
+        variant="outlined"
+        placeholder="Поиск товаров..."
+        value={searchTerm}
+        onChange={handleSearchChange}
+        style={{ marginBottom: 20, width: '100%' }}
+      />
+      {filteredProducts.map((product) => (
         <Card key={product.id} style={{ margin: 10, width: 300 }} onClick={() => handleCardClick(product.id)}>
           <CardActionArea>
             <CardMedia

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import SearchBar from '../components/SearchBar/SearchBar';
+// import SearchBar from '../components/SearchBar/SearchBar';
 import Filter from '../components/Filter/Filter';
 import ProductList from '../components/ProductList/ProductList';
 import Header from '../components/Header/Header';
@@ -35,7 +35,7 @@ function HomePage() {
   return (
     <div>
       <Header />
-      <SearchBar onSearch={handleSearch} />
+      {/* <SearchBar onSearch={handleSearch} /> */}
       <Filter options={[{value: 'cat1', label: 'Категория 1', checked: false}]} onChange={handleFilterChange}/>
       <ProductList products={filteredProducts} />
     </div>
