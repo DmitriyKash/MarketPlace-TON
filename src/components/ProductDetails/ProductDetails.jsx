@@ -5,6 +5,7 @@ import ExpandMoreIcon from '@mui/icons/material/ExpandMore';
 import Header from '../Header/Header';
 import LoginDialog from '../LoginDialog/LoginDialog'; // Импортируйте LoginDialog
 
+
 function ProductDetails() {
   const { id } = useParams();
   const [size, setSize] = useState('');
