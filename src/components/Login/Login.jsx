@@ -1,34 +1,27 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { TonConnectButton, useTonConnectUI } from '@tonconnect/ui-react';
 
 function Login() {
     const { connect, wallet } = useTonConnectUI();
 
-    useEffect(() => {
-        // Этот useEffect будет вызван каждый раз, когда wallet обновляется.
-        console.log("Updated wallet:", wallet); // Теперь здесь должен быть актуальный wallet
-        if (wallet && wallet.address) {
-            registerUser(wallet.address);
-        }
-    }, [wallet]); // Добавляем wallet в зависимости useEffect
-
     const handleLogin = async () => {
-        console.log("handleLogin called"); // Проверка вызова функции
         try {
             await connect();
+            if (wallet) {
+                saveUser(wallet.address);
+            }
         } catch (error) {
             console.error('Login failed:', error);
         }
     };
 
-    const registerUser = (address) => {
-        console.log("Attempting to register user with address:", address);
-        fetch('https://1a75-37-57-145-64.ngrok-free.app/api/auth/login', {
+    const saveUser = (address) => {
+        fetch('https://https://1a75-37-57-145-64.ngrok-free.app/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ userAddress: address })
+            body: JSON.stringify({ address: address })
         })
         .then(response => response.json())
         .then(data => console.log('Success:', data))
@@ -36,7 +29,7 @@ function Login() {
             console.error('Error:', error);
         });
     };
-    
+
     return (
         <div>
             <TonConnectButton onClick={handleLogin} />
