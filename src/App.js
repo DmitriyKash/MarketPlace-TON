@@ -25,10 +25,10 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import HomePage from './pages/HomePage';
-import ProfilePage from './pages/ProfilePage';
-import CartPage from './pages/CartPage';
-import CheckoutPage from './pages/CheckoutPage';
-import AdminPage from './pages/AdminPage';
+// import ProfilePage from './pages/ProfilePage';
+// import CartPage from './pages/CartPage';
+// import CheckoutPage from './pages/CheckoutPage';
+// import AdminPage from './pages/AdminPage';
 import { CartProvider } from './pages/CartContext'; // Ensure this import is correct
 
 function App() {
@@ -38,10 +38,10 @@ function App() {
         <div className="App">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/checkout" element={<CheckoutPage />} />
-            <Route path="/admin" element={<AdminPage />} />
+            {/* <Route path="/profile" element={<ProfilePage />} /> */}
+            {/* <Route path="/cart" element={<CartPage />} /> */}
+            {/* <Route path="/checkout" element={<CheckoutPage />} /> */}
+            {/* <Route path="/admin" element={<AdminPage />} /> */}
             {/* You can add other routes here */}
           </Routes>
         </div>
