@@ -1,32 +1,23 @@
+import React, { createContext, useContext, useState } from 'react';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
-
-const AuthContext = createContext();
+const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
 
-    // Предположим, что у вас есть методы для входа и выхода
-    const login = async () => {
-        // Здесь код для вызова TON Connect API для аутентификации
-        const userData = await tonConnectApi.login();
-        setUser(userData);
-        setIsAuthenticated(true);
-    };
+  const login = (userData) => {
+    setUser(userData);
+  };
 
-    const logout = () => {
-        // Здесь код для вызова TON Connect API для завершения сессии
-        tonConnectApi.logout();
-        setUser(null);
-        setIsAuthenticated(false);
-    };
+  const logout = () => {
+    setUser(null);
+  };
 
-    return (
-        <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
-            {children}
-        </AuthContext.Provider>
-    );
+  return (
+    <AuthContext.Provider value={{ user, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export const useAuth = () => useContext(AuthContext);
