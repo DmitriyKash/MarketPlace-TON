@@ -5,8 +5,8 @@ import ProductList from '../components/ProductList/ProductList';
 import Header from '../components/Header/Header';
 
 function HomePage() {
-  const [products, setProducts] = useState([]); 
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  // const [products, setProducts] = useState([]); 
+  // const [filteredProducts, setFilteredProducts] = useState([]);
 
   // Загрузка данных о продуктах
   useEffect(() => {
