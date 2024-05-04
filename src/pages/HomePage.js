@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import SearchBar from './SearchBar';
-import Filter from './Filter';
-import ProductList from './ProductList';
+import SearchBar from '../components/SearchBar/SearchBar';
+import Filter from '../components/Filter/Filter';
+import ProductList from '../components/ProductList/ProductList';
 
 function HomePage() {
   const [products, setProducts] = useState([]); // Предполагается, что тут будут данные с сервера
