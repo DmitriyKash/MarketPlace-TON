@@ -2,7 +2,7 @@ import React from 'react';
 import { TonConnectButton, useTonConnectUI } from '@tonconnect/ui-react';
 
 function Login() {
-    const { connect, disconnect, wallet } = useTonConnectUI();
+    const { connect, wallet } = useTonConnectUI();
 
     const handleLogin = async () => {
         try {
