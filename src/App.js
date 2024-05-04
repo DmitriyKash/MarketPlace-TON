@@ -33,20 +33,22 @@ import { CartProvider } from './pages/CartContext'; // Ensure this import is cor
 
 function App() {
   return (
-    <Router>
-      <CartProvider> {/* Wrap all routes with CartProvider */}
-        <div className="App">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            {/* <Route path="/profile" element={<ProfilePage />} /> */}
-            {/* <Route path="/cart" element={<CartPage />} /> */}
-            {/* <Route path="/checkout" element={<CheckoutPage />} /> */}
-            {/* <Route path="/admin" element={<AdminPage />} /> */}
-            {/* You can add other routes here */}
-          </Routes>
-        </div>
-      </CartProvider>
-    </Router>
+    <TonConnectUIProvider manifestUrl="https://harmonious-fenglisu-6d5f55.netlify.app/tonconnect-manifest.json">
+        <Router>
+        <CartProvider> {/* Wrap all routes with CartProvider */}
+            <div className="App">
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                {/* <Route path="/profile" element={<ProfilePage />} /> */}
+                {/* <Route path="/cart" element={<CartPage />} /> */}
+                {/* <Route path="/checkout" element={<CheckoutPage />} /> */}
+                {/* <Route path="/admin" element={<AdminPage />} /> */}
+                {/* You can add other routes here */}
+            </Routes>
+            </div>
+        </CartProvider>
+        </Router>
+    </TonConnectUIProvider>
   );
 }
 
