@@ -1,85 +1,57 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Button, Typography, Select, MenuItem, Accordion, AccordionSummary, AccordionDetails, Box } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function ProductDetails() {
+  const { id } = useParams(); // Получение ID из URL
   const [size, setSize] = useState('');
+
+  // Имитация данных продукта (в реальном приложении вы получите это из API или Redux)
+  const tempProducts = [
+    { id: 1, title: 'Apple MacBook Pro', description: '16-inch, 16GB RAM', image: 'path/to/image1.jpg' },
+    { id: 2, title: 'Apple iPad Air', description: '10.9-inch, 256GB, Space Gray', image: 'path/to/image2.jpg' },
+    { id: 3, title: 'Sony Headphones', description: 'Noise Cancelling, Wireless', image: 'path/to/image3.jpg' }
+  ];
+
+  const product = tempProducts.find(p => p.id.toString() === id); // Поиск продукта по ID
 
   const handleChangeSize = (event) => {
     setSize(event.target.value);
   };
 
+  if (!product) {
+    return <Typography>Продукт не найден</Typography>;
+  }
+
   return (
     <Box sx={{ p: 2, border: '1px solid #ccc', maxWidth: 400, margin: 'auto' }}>
       <Typography variant="h5" gutterBottom>
-        Light Grey T-Shirt
-      </Typography>
-      <Typography variant="h6" color="text.secondary">
-        Yeezy x GAP
+        {product.title}
       </Typography>
       <Typography variant="h6" gutterBottom>
-        7.3 TON (~3 849 p)
+        {product.description}
       </Typography>
-      <Typography gutterBottom>
-        Выберите размер:
-        <Select
-          value={size}
-          onChange={handleChangeSize}
-          displayEmpty
-          inputProps={{ 'aria-label': 'Without label' }}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={'L'}>L</MenuItem>
-          <MenuItem value={'XL'}>XL</MenuItem>
-        </Select>
-      </Typography>
-      <Button variant="contained" color="primary" fullWidth>
+      <Select
+        value={size}
+        onChange={handleChangeSize}
+        displayEmpty
+        inputProps={{ 'aria-label': 'Without label' }}
+      >
+        <MenuItem value="">Выберите размер</MenuItem>
+        <MenuItem value={'L'}>L</MenuItem>
+        <MenuItem value={'XL'}>XL</MenuItem>
+      </Select>
+      <Button variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
         КУПИТЬ
       </Button>
-      <Typography variant="body2" color="text.secondary" align="center" sx={{ mt: 2 }}>
-        @SPECIAL.OFFER
-      </Typography>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
+      <Accordion sx={{ mt: 2 }}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography>Описание</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Детальное описание товара...
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography>Лот</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Информация о лоте...
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3a-content"
-          id="panel3a-header"
-        >
-          <Typography>Доставка</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Информация о доставке...
+            {product.description}
           </Typography>
         </AccordionDetails>
       </Accordion>
