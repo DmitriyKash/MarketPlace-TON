@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // import SearchBar from '../components/SearchBar/SearchBar';
-import Filter from '../components/Filter/Filter';
+// import Filter from '../components/Filter/Filter';
 import ProductList from '../components/ProductList/ProductList';
 import Header from '../components/Header/Header';
 
@@ -20,24 +20,20 @@ function HomePage() {
     fetchProducts();
   }, []);
 
-  const handleSearch = (searchTerm) => {
-    const filtered = products.filter(product => product.name.toLowerCase().includes(searchTerm.toLowerCase()));
-    setFilteredProducts(filtered);
-  };
 
-  const handleFilterChange = (value) => {
-    // Реализация фильтрации в зависимости от значения
-    // Пример фильтрации по категории
-    const filtered = products.filter(product => product.category === value);
-    setFilteredProducts(filtered);
-  };
+  // const handleFilterChange = (value) => {
+  //   // Реализация фильтрации в зависимости от значения
+  //   // Пример фильтрации по категории
+  //   const filtered = products.filter(product => product.category === value);
+  //   setFilteredProducts(filtered);
+  // };
 
   return (
     <div>
       <Header />
       {/* <SearchBar onSearch={handleSearch} /> */}
-      <Filter options={[{value: 'cat1', label: 'Категория 1', checked: false}]} onChange={handleFilterChange}/>
-      <ProductList products={filteredProducts} />
+      {/* <Filter options={[{value: 'cat1', label: 'Категория 1', checked: false}]} onChange={handleFilterChange}/> */}
+      <ProductList />
     </div>
   );
 }
