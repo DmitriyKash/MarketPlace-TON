@@ -1,32 +1,24 @@
-// src/contexts/AuthContext.js
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useTonAddress } from '@tonconnect/ui-react';
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+const AuthProvider = ({ children }) => {
+    const [userAddress, setUserAddress] = useState(useTonAddress(true));
 
-    // Предположим, что у вас есть методы для входа и выхода
-    const login = async () => {
-        // Здесь код для вызова TON Connect API для аутентификации
-        const userData = await tonConnectApi.login();
-        setUser(userData);
-        setIsAuthenticated(true);
-    };
-
-    const logout = () => {
-        // Здесь код для вызова TON Connect API для завершения сессии
-        tonConnectApi.logout();
-        setUser(null);
-        setIsAuthenticated(false);
-    };
+    useEffect(() => {
+        // Обновление адреса при изменении состояния подключения кошелька
+        const address = useTonAddress(true);
+        setUserAddress(address);
+    }, [useTonAddress(true)]);
 
     return (
-        <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated: !!userAddress, userAddress }}>
             {children}
         </AuthContext.Provider>
     );
 };
 
 export const useAuth = () => useContext(AuthContext);
+
+export default AuthProvider;
