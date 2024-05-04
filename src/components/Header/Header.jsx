@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -9,9 +10,15 @@ import Login from '../Login/Login';
 
 function Header() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate(); // Хук для навигации
 
   const handleDrawer = () => {
     setOpen(!open);
+  };
+
+  // Функция для перенаправления на домашнюю страницу
+  const handleHomeClick = () => {
+    navigate('/');
   };
 
   return (
@@ -20,7 +27,7 @@ function Header() {
         <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleDrawer}>
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" style={{ flexGrow: 1 }}>
+        <Typography variant="h6" style={{ flexGrow: 1 }} onClick={handleHomeClick} style={{ cursor: 'pointer' }}>
           Мой Маркетплейс
         </Typography>
         <Login />
