@@ -7,6 +7,7 @@ function Login() {
     useEffect(() => {
         if (wallet && wallet.address) {
             saveUser(wallet.address);
+            console.log(wallet.address)
         }
     }, [wallet]);
 
