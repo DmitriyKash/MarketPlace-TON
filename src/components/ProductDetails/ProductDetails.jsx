@@ -9,6 +9,7 @@ import { useAuth } from '../AuthContext/AuthContext';
 
 function ProductDetails() {
   const { id } = useParams();
+  const navigate = useNavigate(); // Добавьте useNavigate для перенаправления
   const [size, setSize] = useState('');
   const { isAuthenticated } = useAuth();
   const [loginDialogOpen, setLoginDialogOpen] = useState(false);
@@ -22,11 +23,20 @@ function ProductDetails() {
   const product = tempProducts.find(p => p.id.toString() === id);
   const handleBuy = () => {
     if (!isAuthenticated) {
-      setLoginDialogOpen(true);
+        setLoginDialogOpen(true);
     } else {
-      console.log('Proceed to buy the product');
+        // Перенаправление на страницу транзакции
+        navigate('/transaction', {
+            state: {
+                title: product.title,
+                description: product.description,
+                price: product.price,
+                lotInfo: product.lotInfo,
+                shippingInfo: product.shippingInfo
+            }
+        });
     }
-  };
+};
 
   const handleChangeSize = (event) => {
     setSize(event.target.value);
