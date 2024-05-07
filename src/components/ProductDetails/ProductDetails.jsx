@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useNavigate } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Typography, Select, MenuItem, Accordion, AccordionSummary, AccordionDetails, Box } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -9,7 +9,7 @@ import { useAuth } from '../AuthContext/AuthContext';
 
 function ProductDetails() {
   const { id } = useParams();
-  const navigate = useNavigate(); // Добавьте useNavigate для перенаправления
+  const navigate = useNavigate();
   const [size, setSize] = useState('');
   const { isAuthenticated } = useAuth();
   const [loginDialogOpen, setLoginDialogOpen] = useState(false);
