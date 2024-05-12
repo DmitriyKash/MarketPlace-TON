@@ -23,6 +23,14 @@ function ProductList() {
       shippingInfo: 'Бесплатная доставка'
     },
     { 
+      id: 4, 
+      title: 'Samsung Galaxy S22 Ultra', 
+      description: '6.8-inch Dynamic AMOLED, 12GB RAM, 256GB Storage, Phantom Black', 
+      image: 'path/to/image4.jpg',
+      lotInfo: 'Лот #789012, доступно 10 штук',
+      shippingInfo: 'Бесплатная экспресс доставка'
+    },    
+    { 
       id: 3, 
       title: 'Sony Headphones', 
       description: 'Noise Cancelling, Wireless', 
