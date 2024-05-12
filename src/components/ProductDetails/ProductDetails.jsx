@@ -48,7 +48,7 @@ function ProductDetails() {
     <>
       <Header />
       <Box sx={{ p: 2, border: '1px solid #ccc', maxWidth: 400, margin: 'auto' }}>
-        <Typography gutterBottom>{product.image}</Typography>
+        <img src={product.image} alt={product.title} style={{ maxWidth: '100%', height: 'auto' }} />
         <Typography variant="h5" gutterBottom>{product.title}</Typography>
         <Typography variant="h6" gutterBottom>{product.description}</Typography>
         <Select value={size} onChange={handleChangeSize} displayEmpty inputProps={{ 'aria-label': 'Without label' }}>
