@@ -15,7 +15,7 @@ function LoginDialog({ open, onClose }) {
           component="img"
           alt="Инструкция по подключению кошелька"
           height="auto"
-          image="./img/login.png"
+          image="/img/login.png"
         />
         <p>Следуйте инструкциям, чтобы подключить ваш кошелек.</p>
       </DialogContent>
