@@ -5,6 +5,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Header from '../Header/Header';
 import LoginDialog from '../LoginDialog/LoginDialog'; // Импортируйте LoginDialog
 import { useAuth } from '../AuthContext/AuthContext';
+import { useProducts } from '../ProductContext/ProductContext';
 
 
 function ProductDetails() {
@@ -13,14 +14,10 @@ function ProductDetails() {
   const [size, setSize] = useState('');
   const { isAuthenticated } = useAuth();
   const [loginDialogOpen, setLoginDialogOpen] = useState(false);
+  const { products } = useProducts();
+  const product = products.find(p => p.id.toString() === id);
 
-  const tempProducts = [
-    { id: 1, title: 'Apple MacBook Pro', description: '16-inch, 16GB RAM', image: 'path/to/image1.jpg', lotInfo: 'Лот #123456, доступно 5 штук', shippingInfo: 'Доставка в течение 3-5 рабочих дней' },
-    { id: 2, title: 'Apple iPad Air', description: '10.9-inch, 256GB, Space Gray', image: 'path/to/image2.jpg', lotInfo: 'Лот #234567, доступно 3 штуки', shippingInfo: 'Бесплатная доставка' },
-    { id: 3, title: 'Sony Headphones', description: 'Noise Cancelling, Wireless', image: 'path/to/image3.jpg', lotInfo: 'Лот #345678, доступно 10 штук', shippingInfo: 'Доставка за 1 день, платно' }
-  ];
 
-  const product = tempProducts.find(p => p.id.toString() === id);
   const handleBuy = () => {
     if (!isAuthenticated) {
         setLoginDialogOpen(true);

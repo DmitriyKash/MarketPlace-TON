@@ -33,6 +33,7 @@ import { TonConnectUIProvider } from '@tonconnect/ui-react';
 // import AdminPage from './pages/AdminPage';
 import { CartProvider } from './pages/CartContext'; // Ensure this import is correct
 import AuthProvider from './components/AuthContext/AuthContext';
+import { ProductProvider } from './components/ProductContext/ProductContext';
 
 
 
@@ -41,6 +42,7 @@ function App() {
     <TonConnectUIProvider manifestUrl="https://harmonious-fenglisu-6d5f55.netlify.app/tonconnect-manifest.json">
         <Router>
         <AuthProvider>
+          <ProductProvider>
         <CartProvider> {/* Wrap all routes with CartProvider */}
             <div className="App">
             <Routes>
@@ -54,6 +56,7 @@ function App() {
             </Routes>
             </div>
         </CartProvider>
+        </ProductProvider>
         </AuthProvider>
         </Router>
     </TonConnectUIProvider>
