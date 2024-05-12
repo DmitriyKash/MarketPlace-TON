@@ -51,6 +51,9 @@ function ProductList() {
               <Typography variant="body2" color="textSecondary" component="p" style={{ overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
                 {product.description}
               </Typography>
+              <Typography variant="h6" component="p" style={{ marginTop: 'auto' }}>
+                Цена: {product.price} TON
+              </Typography>
             </CardContent>
           </CardActionArea>
         </Card>
