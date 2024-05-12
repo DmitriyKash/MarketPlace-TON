@@ -9,10 +9,10 @@ function LoginDialog({ open, onClose, onLogin }) {
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Вход в систему</DialogTitle>
-      <DialogContent>Пожалуйста, войдите, чтобы продолжить покупку.</DialogContent>
+      <DialogContent>Пожалуйста, войдите через "Connect Wallet", чтобы продолжить покупку.</DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Отмена</Button>
-        <Button onClick={onLogin} color="primary">Войти</Button>
+        {/* <Button onClick={onLogin} color="primary">Войти</Button> */}
       </DialogActions>
     </Dialog>
   );

@@ -7,6 +7,10 @@ import Typography from '@mui/material/Typography';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import Login from '../Login/Login';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
 
 function Header() {
   const [open, setOpen] = useState(false);
@@ -16,9 +20,13 @@ function Header() {
     setOpen(!open);
   };
 
-  // Функция для перенаправления на домашнюю страницу
   const handleHomeClick = () => {
     navigate('/');
+  };
+
+  const handleLinkClick = (path) => {
+    navigate(path);
+    setOpen(false); // Закрыть Drawer после выбора
   };
 
   return (
@@ -33,7 +41,16 @@ function Header() {
         <Login />
       </Toolbar>
       <Drawer open={open} onClose={handleDrawer}>
-        {/* Содержимое вашего Drawer */}
+        <List>
+          <ListItem button onClick={() => handleLinkClick('/support')}>
+            <ListItemText primary="Поддержка" />
+          </ListItem>
+          <ListItem button onClick={() => handleLinkClick('/faq')}>
+            <ListItemText primary="FAQ" />
+          </ListItem>
+        </List>
+        <Divider />
+        {/* Дополнительные ссылки или содержимое */}
       </Drawer>
     </AppBar>
   );
