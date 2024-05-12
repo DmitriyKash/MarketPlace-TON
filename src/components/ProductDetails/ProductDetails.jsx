@@ -51,6 +51,7 @@ function ProductDetails() {
         <img src={product.image} alt={product.title} style={{ maxWidth: '100%', height: 'auto' }} />
         <Typography variant="h5" gutterBottom>{product.title}</Typography>
         <Typography variant="h6" gutterBottom>{product.description}</Typography>
+        <Typography variant="h6" gutterBottom>{product.price}</Typography>
         <Select value={size} onChange={handleChangeSize} displayEmpty inputProps={{ 'aria-label': 'Without label' }}>
           <MenuItem value="">Выберите размер</MenuItem>
           {/* <MenuItem value={'L'}>L</MenuItem> */}
