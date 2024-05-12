@@ -46,7 +46,7 @@ function ProductList() {
   };
 
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
       <TextField
         variant="outlined"
         placeholder="Поиск товаров..."
@@ -55,7 +55,7 @@ function ProductList() {
         style={{ marginBottom: 20, width: '100%' }}
       />
       {filteredProducts.map((product) => (
-        <Card key={product.id} style={{ margin: 10, width: 300 }} onClick={() => handleCardClick(product.id)}>
+        <Card key={product.id} style={{ margin: 10, width: 'calc(50% - 20px)' }} onClick={() => handleCardClick(product.id)}>
           <CardActionArea>
             <CardMedia
               component="img"
