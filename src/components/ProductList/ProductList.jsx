@@ -45,10 +45,10 @@ function ProductList() {
               title={product.title}
             />
             <CardContent style={{ flexGrow: 1, overflow: 'hidden' }}>
-              <Typography gutterBottom variant="h5" component="h2" style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              <Typography gutterBottom variant="h5" component="h2" style={{ overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>
                 {product.title}
               </Typography>
-              <Typography variant="body2" color="textSecondary" component="p" style={{ overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>
+              <Typography variant="body2" color="textSecondary" component="p" style={{ overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
                 {product.description}
               </Typography>
             </CardContent>
