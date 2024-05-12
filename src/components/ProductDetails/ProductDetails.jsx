@@ -26,6 +26,7 @@ function ProductDetails() {
         navigate('/transaction', {
             state: {
                 title: product.title,
+                image: product.image,
                 description: product.description,
                 price: product.price,
                 lotInfo: product.lotInfo,
@@ -47,12 +48,13 @@ function ProductDetails() {
     <>
       <Header />
       <Box sx={{ p: 2, border: '1px solid #ccc', maxWidth: 400, margin: 'auto' }}>
+        <Typography gutterBottom>{product.image}</Typography>
         <Typography variant="h5" gutterBottom>{product.title}</Typography>
         <Typography variant="h6" gutterBottom>{product.description}</Typography>
         <Select value={size} onChange={handleChangeSize} displayEmpty inputProps={{ 'aria-label': 'Without label' }}>
           <MenuItem value="">Выберите размер</MenuItem>
-          <MenuItem value={'L'}>L</MenuItem>
-          <MenuItem value={'XL'}>XL</MenuItem>
+          {/* <MenuItem value={'L'}>L</MenuItem> */}
+          {/* <MenuItem value={'XL'}>XL</MenuItem> */}
         </Select>
         <Button variant="contained" color={!isAuthenticated ? 'secondary' : 'primary'} fullWidth sx={{ mt: 2 }} onClick={handleBuy}>
           КУПИТЬ
