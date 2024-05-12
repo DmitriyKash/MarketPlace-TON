@@ -15,9 +15,9 @@ function LoginDialog({ open, onClose }) {
           component="img"
           alt="Инструкция по подключению кошелька"
           height="auto"
-          image="path/to/your-wallet-connect-instruction.gif"
+          image="./img/login.png"
         />
-        <p>Следуйте инструкциям на гифке, чтобы подключить ваш кошелек.</p>
+        <p>Следуйте инструкциям, чтобы подключить ваш кошелек.</p>
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} color="primary">Закрыть</Button>
