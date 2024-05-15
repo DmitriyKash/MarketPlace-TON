@@ -6,7 +6,8 @@ TonClient.useBinaryLibrary(libWeb);
 
 const client = new TonClient({
   network: {
-    endpoints: ['https://main.ton.dev'], // Укажите ваши эндпоинты
+    // endpoints: ['https://main.ton.dev'], // Для основной сети
+    endpoints: ['https://test.ton.dev'], // Для тестовой сети
   },
 });
 

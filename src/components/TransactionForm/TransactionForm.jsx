@@ -19,11 +19,54 @@ const TransactionForm = () => {
     const handleSendTransaction = async () => {
         try {
             setStatus('Отправка транзакции...');
-            const result = await client.transfer({
-                to: toAddress,
-                value: parseFloat(amount), // Убедитесь, что число корректно преобразуется
-                payload: message,
+
+            // Convert address to the proper format
+            const toAddressConverted = (await client.utils.convert_address({
+                address: toAddress,
+                output_format: {
+                    type: 'Hex',
+                },
+            })).address;
+
+            // Prepare message body
+            const transferAbi = {
+                type: 'FunctionCall',
+                value: {
+                    function_name: 'transfer',
+                    input: {
+                        comment: message,
+                    },
+                },
+            };
+
+            // Prepare payload
+            const payload = {
+                abi: {
+                    type: 'Contract',
+                    value: transferAbi,
+                },
+                address: toAddressConverted,
+                call_set: {
+                    function_name: 'sendTransaction',
+                    input: {
+                        dest: toAddressConverted,
+                        value: parseInt(amount, 10),
+                        bounce: false,
+                        flags: 0,
+                        payload: '',
+                    },
+                },
+                signer: {
+                    type: 'None',
+                },
+            };
+
+            // Send the transaction
+            const result = await client.processing.process_message({
+                message_encode_params: payload,
+                send_events: false,
             });
+
             setStatus(`Транзакция успешно отправлена. Результат: ${JSON.stringify(result)}`);
         } catch (error) {
             setStatus(`Ошибка при отправке транзакции: ${error.message}`);
