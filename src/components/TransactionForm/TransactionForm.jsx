@@ -61,7 +61,7 @@ const TransactionForm = () => {
                         value: parseInt(amount, 10),
                         bounce: false,
                         flags: 3,
-                        payload: message,
+                        payload: '',  // Оставляем payload пустым, если он не требуется
                     },
                 },
                 signer: { type: 'None' },
