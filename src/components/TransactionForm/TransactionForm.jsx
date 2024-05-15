@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import client from '../../tonClient';
 
-// Загрузка переменных окружения
+// Загрузка переменной окружения для адреса получателя
 const recipientAddress = process.env.REACT_APP_TON_RECIPIENT_ADDRESS;
 
 const TransactionForm = () => {

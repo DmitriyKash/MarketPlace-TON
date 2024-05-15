@@ -1,10 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { TonClient } from '@eversdk/core';
 import { libWeb, libWebSetup } from '@eversdk/lib-web';
-import dotenv from 'dotenv';
-
-// Загрузка переменных окружения из .env файла
-dotenv.config();
 
 // Настройка URL для WASM модуля
 libWebSetup({
