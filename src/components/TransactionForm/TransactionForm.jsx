@@ -125,42 +125,57 @@ const TransactionForm = () => {
             setStatus('Отправка транзакции...');
             console.log('Starting transaction...');
 
-            const result = await client.processing.process_message({
-                message_encode_params: {
-                    abi: {
-                        type: 'Contract',
-                        value: {
-                            "ABI version": 2,
-                            functions: [
-                                {
-                                    name: 'sendTransaction',
-                                    inputs: [
-                                        { name: 'dest', type: 'address' },
-                                        { name: 'value', type: 'uint128' },
-                                        { name: 'bounce', type: 'bool' },
-                                        { name: 'flags', type: 'uint8' },
-                                        { name: 'payload', type: 'cell' },
-                                    ],
-                                    outputs: [],
-                                },
-                            ],
-                            data: [],
-                            events: [],
-                        },
-                    },
-                    address: toAddress,
-                    call_set: {
-                        function_name: 'sendTransaction',
-                        input: {
-                            dest: toAddress,
-                            value: amount,
-                            bounce: false,
-                            flags: 3,
-                            payload: message,
-                        },
-                    },
-                    signer: { type: 'None' },
+            // Преобразование адреса в правильный формат
+            const toAddressConverted = (await client.utils.convert_address({
+                address: toAddress,
+                output_format: {
+                    type: 'Hex',
                 },
+            })).address;
+            console.log('Converted Address:', toAddressConverted);
+
+            // Подготовка вызова функции
+            const payload = {
+                abi: {
+                    type: 'Contract',
+                    value: {
+                        "ABI version": 2,
+                        functions: [
+                            {
+                                name: 'sendTransaction',
+                                inputs: [
+                                    { name: 'dest', type: 'address' },
+                                    { name: 'value', type: 'uint128' },
+                                    { name: 'bounce', type: 'bool' },
+                                    { name: 'flags', type: 'uint8' },
+                                    { name: 'payload', type: 'cell' },
+                                ],
+                                outputs: [],
+                            },
+                        ],
+                        data: [],
+                        events: [],
+                    },
+                },
+                address: toAddressConverted,
+                call_set: {
+                    function_name: 'sendTransaction',
+                    input: {
+                        dest: toAddressConverted,
+                        value: parseInt(amount, 10),
+                        bounce: false,
+                        flags: 3,
+                        payload: message,
+                    },
+                },
+                signer: { type: 'None' },
+            };
+
+            console.log('Payload:', payload);
+
+            // Отправка транзакции
+            const result = await client.processing.process_message({
+                message_encode_params: payload,
                 send_events: false,
             });
 
