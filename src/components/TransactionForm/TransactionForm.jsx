@@ -107,13 +107,12 @@ import { useLocation } from 'react-router-dom';
 import client from '../../tonClient';
 
 const TransactionForm = () => {
+    const [toAddress, setToAddress] = useState('');
     const [amount, setAmount] = useState('');
     const [message, setMessage] = useState('');
     const [status, setStatus] = useState('');
     const location = useLocation();
     const { title, price } = location.state || {};
-
-    const toAddress = 'UQBGQJ5C_MjoUt7XtK9Ru7a5saLXVk4HWpohm0tfWxKZd2eg'; // Замените на реальный адрес получателя
 
     useEffect(() => {
         if (price) {
@@ -126,12 +125,16 @@ const TransactionForm = () => {
             setStatus('Отправка транзакции...');
             console.log('Starting transaction...');
 
-            // Проверка валидности адреса
-            if (!toAddress || !/^EQ[A-Za-z0-9_-]{48}$/.test(toAddress)) {
-                throw new Error('Неправильный формат адреса');
-            }
+            // Преобразование адреса в формат Hex
+            const toAddressConverted = (await client.utils.convert_address({
+                address: toAddress,
+                output_format: {
+                    type: 'Hex',
+                },
+            })).address;
+            console.log('Converted Address:', toAddressConverted);
 
-            // Подготовка вызова функции без конвертации адреса
+            // Подготовка вызова функции
             const payload = {
                 abi: {
                     type: 'Contract',
@@ -154,11 +157,11 @@ const TransactionForm = () => {
                         events: [],
                     },
                 },
-                address: toAddress, // Используем адрес напрямую
+                address: toAddressConverted,
                 call_set: {
                     function_name: 'sendTransaction',
                     input: {
-                        dest: toAddress,
+                        dest: toAddressConverted,
                         value: parseInt(amount, 10),
                         bounce: false,
                         flags: 3,
@@ -191,7 +194,7 @@ const TransactionForm = () => {
                 type="text"
                 placeholder="Адрес получателя"
                 value={toAddress}
-                readOnly // Поле только для чтения
+                onChange={(e) => setToAddress(e.target.value)}
             />
             <input
                 type="number"
