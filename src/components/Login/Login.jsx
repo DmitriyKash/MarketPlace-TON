@@ -3,7 +3,7 @@ import { TonConnectButton } from '@tonconnect/ui-react';
 
 function Login() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [setUser] = useState(null);
+  const [user, setUser] = useState(null); // Правильное использование useState для пользователя
 
   const handleAuthentication = (status, userData) => {
     setIsAuthenticated(status);
@@ -14,6 +14,7 @@ function Login() {
     <div>
       {isAuthenticated ? (
         <div>
+          <p>Пользователь: {user ? user.name : 'Нет данных'}</p>
           <button onClick={() => handleAuthentication(false, null)}>Выйти</button>
         </div>
       ) : (
