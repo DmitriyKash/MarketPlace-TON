@@ -9,7 +9,7 @@ const TransactionForm = () => {
     const location = useLocation();
     const { title, price } = location.state || {};
 
-    const [toAddress, setToAddress] = useState(recipientAddress);
+    const [toAddress] = useState(recipientAddress); // Используем только toAddress, удаляем setToAddress
     const [amount, setAmount] = useState('');
     const [message, setMessage] = useState('');
     const [status, setStatus] = useState('');
