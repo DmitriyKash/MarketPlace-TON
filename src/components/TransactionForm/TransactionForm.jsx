@@ -129,7 +129,7 @@ const TransactionForm = () => {
             const toAddressConverted = (await client.utils.convert_address({
                 address: toAddress,
                 output_format: {
-                    type: 'Any', // Можно использовать 'Hex', 'Base64', 'AccountId', 'Any'
+                    type: 'Base64', // Можно использовать 'Hex', 'Base64', 'AccountId', 'Any'
                 },
             })).address;
             console.log('Converted Address:', toAddressConverted);
