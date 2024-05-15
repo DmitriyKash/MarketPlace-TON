@@ -107,12 +107,13 @@ import { useLocation } from 'react-router-dom';
 import client from '../../tonClient';
 
 const TransactionForm = () => {
-    const [toAddress] = useState('UQBGQJ5C_MjoUt7XtK9Ru7a5saLXVk4HWpohm0tfWxKZd2eg'); // Замените на реальный адрес получателя
     const [amount, setAmount] = useState('');
     const [message, setMessage] = useState('');
     const [status, setStatus] = useState('');
     const location = useLocation();
     const { title, price } = location.state || {};
+
+    const toAddress = 'UQBGQJ5C_MjoUt7XtK9Ru7a5saLXVk4HWpohm0tfWxKZd2eg'; // Замените на реальный адрес получателя
 
     useEffect(() => {
         if (price) {
@@ -124,6 +125,11 @@ const TransactionForm = () => {
         try {
             setStatus('Отправка транзакции...');
             console.log('Starting transaction...');
+
+            // Проверка валидности адреса
+            if (!toAddress || !/^EQ[A-Za-z0-9_-]{48}$/.test(toAddress)) {
+                throw new Error('Неправильный формат адреса');
+            }
 
             // Подготовка вызова функции без конвертации адреса
             const payload = {
@@ -206,5 +212,6 @@ const TransactionForm = () => {
 };
 
 export default TransactionForm;
+
 
 
