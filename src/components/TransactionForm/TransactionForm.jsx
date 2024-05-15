@@ -53,7 +53,7 @@ const TransactionForm = () => {
                         events: [],
                     },
                 },
-                address: toAddressConverted,
+                address: 'YOUR_WALLET_ADDRESS', // Укажите ваш адрес отправителя
                 call_set: {
                     function_name: 'sendTransaction',
                     input: {
@@ -61,10 +61,10 @@ const TransactionForm = () => {
                         value: parseInt(amount, 10),
                         bounce: false,
                         flags: 3,
-                        payload: '',  // Оставляем payload пустым, если он не требуется
+                        payload: '', // Оставляем payload пустым
                     },
                 },
-                signer: { type: 'None' },
+                signer: { type: 'Keys', keys: 'YOUR_WALLET_KEYS' }, // Укажите ключи для подписания
             };
 
             console.log('Payload:', payload);
