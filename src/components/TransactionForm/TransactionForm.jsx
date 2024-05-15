@@ -125,22 +125,7 @@ const TransactionForm = () => {
             setStatus('Отправка транзакции...');
             console.log('Starting transaction...');
 
-            // Преобразование адреса в формат Base64
-            const toAddressConverted = (await client.utils.convert_address({
-                address: toAddress,
-                output_format: {
-                    type: 'Base64',
-                },
-            })).address;
-
-            console.log('Converted Address:', toAddressConverted);
-
-            // Проверка валидности конвертированного адреса
-            if (!toAddressConverted) {
-                throw new Error('Неправильный формат адреса');
-            }
-
-            // Подготовка вызова функции
+            // Подготовка вызова функции без конвертации адреса
             const payload = {
                 abi: {
                     type: 'Contract',
@@ -163,11 +148,11 @@ const TransactionForm = () => {
                         events: [],
                     },
                 },
-                address: toAddressConverted,
+                address: toAddress, // Используем адрес напрямую
                 call_set: {
                     function_name: 'sendTransaction',
                     input: {
-                        dest: toAddressConverted,
+                        dest: toAddress,
                         value: parseInt(amount, 10),
                         bounce: false,
                         flags: 3,
