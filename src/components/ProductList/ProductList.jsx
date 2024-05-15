@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, CardActionArea, CardContent, CardMedia, Typography, TextField } from '@mui/material';
+import { Card, CardActionArea, CardContent, CardMedia, Typography, TextField, Grid, Container } from '@mui/material';
 import { useProducts } from '../ProductContext/ProductContext';
 
 function ProductList() {
@@ -22,43 +22,47 @@ function ProductList() {
   };
 
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+    <Container>
       <TextField
         variant="outlined"
         placeholder="Поиск товаров..."
         value={searchTerm}
         onChange={handleSearchChange}
-        style={{ marginBottom: 20, width: '100%' }}
+        fullWidth
+        margin="normal"
       />
-      {filteredProducts.map((product) => (
-        <Card
-          key={product.id}
-          style={{ margin: 10, width: 'calc(50% - 20px)', height: '350px', display: 'flex', flexDirection: 'column' }}
-          onClick={() => handleCardClick(product.id)}
-        >
-          <CardActionArea style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-            <CardMedia
-              component="img"
-              alt={product.title}
-              style={{ height: 140, objectFit: 'cover' }}
-              image={product.image}
-              title={product.title}
-            />
-            <CardContent style={{ flexGrow: 1, overflow: 'hidden' }}>
-              <Typography gutterBottom variant="h5" component="h2" style={{ overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>
-                {product.title}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p" style={{ overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
-                {product.description}
-              </Typography>
-              <Typography variant="h6" component="p" style={{ marginTop: 'auto' }}>
-                Цена: {product.price} TON
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
-      ))}
-    </div>
+      <Grid container spacing={4}>
+        {filteredProducts.map((product) => (
+          <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
+            <Card
+              onClick={() => handleCardClick(product.id)}
+              sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}
+            >
+              <CardActionArea sx={{ flexGrow: 1 }}>
+                <CardMedia
+                  component="img"
+                  alt={product.title}
+                  sx={{ height: 200 }}
+                  image={product.image}
+                  title={product.title}
+                />
+                <CardContent sx={{ flexGrow: 1 }}>
+                  <Typography gutterBottom variant="h5" component="h2" noWrap>
+                    {product.title}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" noWrap>
+                    {product.description}
+                  </Typography>
+                  <Typography variant="h6" component="p" sx={{ mt: 2 }}>
+                    Цена: {product.price} TON
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
   );
 }
 
