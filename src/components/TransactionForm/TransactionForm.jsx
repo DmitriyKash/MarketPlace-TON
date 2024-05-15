@@ -124,6 +124,7 @@ const TransactionForm = () => {
         try {
             setStatus('Отправка транзакции...');
             console.log('Starting transaction...');
+            console.log(toAddress);
 
             // Преобразование адреса в стандартный формат
             const toAddressConverted = (await client.utils.convert_address({
