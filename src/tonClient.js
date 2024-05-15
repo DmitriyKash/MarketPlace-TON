@@ -12,20 +12,20 @@ const client = new TonClient({
 });
 
 // Функция для проверки соединения
-const checkConnection = async () => {
-  try {
-    const result = await client.net.query_collection({
-      collection: 'blocks_signatures',
-      filter: {},
-      result: 'id',
-      limit: 1,
-    });
-    console.log('Connection successful:', result);
-  } catch (error) {
-    console.error('Connection failed:', error);
-  }
-};
+// const checkConnection = async () => {
+//   try {
+//     const result = await client.net.query_collection({
+//       collection: 'blocks_signatures',
+//       filter: {},
+//       result: 'id',
+//       limit: 1,
+//     });
+//     console.log('Connection successful:', result);
+//   } catch (error) {
+//     console.error('Connection failed:', error);
+//   }
+// };
 
-checkConnection();
+// checkConnection();
 
 export default client;
