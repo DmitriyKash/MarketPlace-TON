@@ -107,7 +107,7 @@ import { useLocation } from 'react-router-dom';
 import client from '../../tonClient';
 
 const TransactionForm = () => {
-    const [toAddress, setToAddress] = useState('');
+    const [toAddress] = useState('UQBGQJ5C_MjoUt7XtK9Ru7a5saLXVk4HWpohm0tfWxKZd2eg'); // Замените на реальный адрес получателя
     const [amount, setAmount] = useState('');
     const [message, setMessage] = useState('');
     const [status, setStatus] = useState('');
@@ -132,7 +132,13 @@ const TransactionForm = () => {
                     type: 'Base64',
                 },
             })).address;
+
             console.log('Converted Address:', toAddressConverted);
+
+            // Проверка валидности конвертированного адреса
+            if (!toAddressConverted) {
+                throw new Error('Неправильный формат адреса');
+            }
 
             // Подготовка вызова функции
             const payload = {
@@ -194,7 +200,7 @@ const TransactionForm = () => {
                 type="text"
                 placeholder="Адрес получателя"
                 value={toAddress}
-                onChange={(e) => setToAddress(e.target.value)}
+                readOnly // Поле только для чтения
             />
             <input
                 type="number"
@@ -215,3 +221,4 @@ const TransactionForm = () => {
 };
 
 export default TransactionForm;
+
