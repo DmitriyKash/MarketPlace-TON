@@ -3,12 +3,14 @@ import { useLocation } from 'react-router-dom';
 import client from '../../tonClient';
 
 const TransactionForm = () => {
-    const [toAddress, setToAddress] = useState('');
+    const location = useLocation();
+    const { title, price } = location.state || {};
+
+    // Установите адрес получателя напрямую
+    const [toAddress, setToAddress] = useState('UQBGQJ5C_MjoUt7XtK9Ru7a5saLXVk4HWpohm0tfWxKZd2eg');
     const [amount, setAmount] = useState('');
     const [message, setMessage] = useState('');
     const [status, setStatus] = useState('');
-    const location = useLocation();
-    const { title, price } = location.state || {};
 
     useEffect(() => {
         if (price) {
@@ -53,7 +55,7 @@ const TransactionForm = () => {
                         events: [],
                     },
                 },
-                address: 'YOUR_WALLET_ADDRESS', // Укажите ваш адрес отправителя
+                address: toAddressConverted,
                 call_set: {
                     function_name: 'sendTransaction',
                     input: {
@@ -61,10 +63,10 @@ const TransactionForm = () => {
                         value: parseInt(amount, 10),
                         bounce: false,
                         flags: 3,
-                        payload: '', // Оставляем payload пустым
+                        payload: '',  // Оставляем payload пустым, если он не требуется
                     },
                 },
-                signer: { type: 'Keys', keys: 'YOUR_WALLET_KEYS' }, // Укажите ключи для подписания
+                signer: { type: 'None' },
             };
 
             console.log('Payload:', payload);
@@ -91,6 +93,7 @@ const TransactionForm = () => {
                 placeholder="Адрес получателя"
                 value={toAddress}
                 onChange={(e) => setToAddress(e.target.value)}
+                readOnly
             />
             <input
                 type="number"
