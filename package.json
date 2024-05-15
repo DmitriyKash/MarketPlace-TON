@@ -5,6 +5,8 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@eversdk/core": "^1.45.1",
+    "@eversdk/lib-web": "^1.45.1",
     "@mui/icons-material": "^5.15.16",
     "@mui/material": "^5.15.16",
     "@testing-library/jest-dom": "^5.17.0",
@@ -44,6 +46,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "copy-webpack-plugin": "^12.0.2"
   }
 }

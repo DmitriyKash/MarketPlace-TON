@@ -1,31 +1,18 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { TonClient } from '@tonclient/core';
-import { libWeb } from '@tonclient/lib-web';
+import { TonClient } from '@eversdk/core';
+import { libWeb, libWebSetup } from '@eversdk/lib-web';
+
+// Настройка альтернативного URL для WASM модуля
+libWebSetup({
+    binaryURL: '/assets/eversdk_1_30_1.wasm', // Путь к WASM файлу
+});
 
 TonClient.useBinaryLibrary(libWeb);
 
 const client = new TonClient({
-  network: {
-    // endpoints: ['https://main.ton.dev'], // Для основной сети
-    endpoints: ['https://test.ton.dev'], // Для тестовой сети
-  },
+    network: {
+        endpoints: ['https://test.ton.dev'], // Для тестовой сети
+    },
 });
-
-// Функция для проверки соединения
-// const checkConnection = async () => {
-//   try {
-//     const result = await client.net.query_collection({
-//       collection: 'blocks_signatures',
-//       filter: {},
-//       result: 'id',
-//       limit: 1,
-//     });
-//     console.log('Connection successful:', result);
-//   } catch (error) {
-//     console.error('Connection failed:', error);
-//   }
-// };
-
-// checkConnection();
 
 export default client;
