@@ -123,13 +123,34 @@ const TransactionForm = () => {
     const handleSendTransaction = async () => {
         try {
             setStatus('Отправка транзакции...');
+            console.log('Starting transaction...');
 
             const result = await client.processing.process_message({
                 message_encode_params: {
-                    abi: { type: 'Contract', value: { functions: [] } }, // Placeholder ABI
+                    abi: {
+                        type: 'Contract',
+                        value: {
+                            "ABI version": 2,
+                            functions: [
+                                {
+                                    name: 'sendTransaction',
+                                    inputs: [
+                                        { name: 'dest', type: 'address' },
+                                        { name: 'value', type: 'uint128' },
+                                        { name: 'bounce', type: 'bool' },
+                                        { name: 'flags', type: 'uint8' },
+                                        { name: 'payload', type: 'cell' },
+                                    ],
+                                    outputs: [],
+                                },
+                            ],
+                            data: [],
+                            events: [],
+                        },
+                    },
                     address: toAddress,
                     call_set: {
-                        function_name: 'sendTransaction', // Replace with the actual function name
+                        function_name: 'sendTransaction',
                         input: {
                             dest: toAddress,
                             value: amount,
@@ -138,13 +159,15 @@ const TransactionForm = () => {
                             payload: message,
                         },
                     },
-                    signer: { type: 'None' }, // Use the appropriate signer
+                    signer: { type: 'None' },
                 },
                 send_events: false,
             });
 
+            console.log('Transaction result:', result);
             setStatus(`Транзакция успешно отправлена. Результат: ${JSON.stringify(result)}`);
         } catch (error) {
+            console.error('Transaction error:', error);
             setStatus(`Ошибка при отправке транзакции: ${error.message}`);
         }
     };
@@ -177,3 +200,4 @@ const TransactionForm = () => {
 };
 
 export default TransactionForm;
+
