@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import client from '../../tonClient';
 
+// Загрузка переменных окружения
+const recipientAddress = process.env.REACT_APP_TON_RECIPIENT_ADDRESS;
+
 const TransactionForm = () => {
     const location = useLocation();
     const { title, price } = location.state || {};
 
-    // Установите адрес получателя напрямую
-    const [toAddress, setToAddress] = useState('UQBGQJ5C_MjoUt7XtK9Ru7a5saLXVk4HWpohm0tfWxKZd2eg');
+    const [toAddress, setToAddress] = useState(recipientAddress);
     const [amount, setAmount] = useState('');
     const [message, setMessage] = useState('');
     const [status, setStatus] = useState('');
@@ -92,7 +94,6 @@ const TransactionForm = () => {
                 type="text"
                 placeholder="Адрес получателя"
                 value={toAddress}
-                onChange={(e) => setToAddress(e.target.value)}
                 readOnly
             />
             <input
