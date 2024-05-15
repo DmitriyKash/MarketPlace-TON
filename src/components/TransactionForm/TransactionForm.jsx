@@ -125,11 +125,11 @@ const TransactionForm = () => {
             setStatus('Отправка транзакции...');
             console.log('Starting transaction...');
 
-            // Преобразование адреса в правильный формат
+            // Преобразование адреса в стандартный формат
             const toAddressConverted = (await client.utils.convert_address({
                 address: toAddress,
                 output_format: {
-                    type: 'Hex',
+                    type: 'Hex', // Можно использовать 'Hex', 'Base64', 'AccountId', 'Any'
                 },
             })).address;
             console.log('Converted Address:', toAddressConverted);
@@ -215,3 +215,4 @@ const TransactionForm = () => {
 };
 
 export default TransactionForm;
+
