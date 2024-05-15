@@ -26,6 +26,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import HomePage from './pages/HomePage';
 import ProductDetails from'./components/ProductDetails/ProductDetails';
+import TransactionForm from './components/TransactionForm/TransactionForm';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 // import ProfilePage from './pages/ProfilePage';
 // import CartPage from './pages/CartPage';
@@ -48,6 +49,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/product/:id" element={<ProductDetails />} />
+                <Route path="/transaction" element={<TransactionForm />} />
                 {/* <Route path="/profile" element={<ProfilePage />} /> */}
                 {/* <Route path="/cart" element={<CartPage />} /> */}
                 {/* <Route path="/checkout" element={<CheckoutPage />} /> */}

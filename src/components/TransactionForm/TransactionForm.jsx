@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
-import client from '../../tonClient'; // Импортируйте клиента TON
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import client from '../../tonClient';
 
 const TransactionForm = () => {
     const [toAddress, setToAddress] = useState('');
     const [amount, setAmount] = useState('');
     const [message, setMessage] = useState('');
     const [status, setStatus] = useState('');
+    const location = useLocation();
+    const { title, price } = location.state || {};
+
+    useEffect(() => {
+        if (price) {
+            setAmount(price.toString());
+        }
+    }, [price]);
 
     const handleSendTransaction = async () => {
         try {
@@ -23,7 +32,7 @@ const TransactionForm = () => {
 
     return (
         <div>
-            <h2>Отправить Транзакцию</h2>
+            <h2>Отправить Транзакцию для {title}</h2>
             <input
                 type="text"
                 placeholder="Адрес получателя"

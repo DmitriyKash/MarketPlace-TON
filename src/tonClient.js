@@ -1,8 +1,12 @@
-import { TonClient } from 'ton-web-js';
+import { TonClient } from '@tonclient/core';
+import { libWeb } from '@tonclient/lib-web';
 
-// Настроить клиента с вашим конечным URL для работы с блокчейном
+TonClient.useBinaryLibrary(libWeb);
+
 const client = new TonClient({
-    endpoint: 'https://testnet.toncenter.com/api/v2/jsonRPC',
+  network: {
+    endpoints: ['https://main.ton.dev'], // Укажите ваши эндпоинты
+  },
 });
 
 export default client;
