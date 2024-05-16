@@ -21,7 +21,7 @@
 
 // export default App;
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import HomePage from './pages/HomePage';
@@ -39,6 +39,14 @@ import { ProductProvider } from './components/ProductContext/ProductContext';
 
 
 function App() {
+  useEffect(() => {
+    const telegramWebApp = window.Telegram.WebApp;
+    telegramWebApp.ready();
+
+    // Запрос на полноэкранный режим
+    telegramWebApp.expand();
+}, []);
+
   return (
     <TonConnectUIProvider manifestUrl="https://harmonious-fenglisu-6d5f55.netlify.app/tonconnect-manifest.json">
         <Router>
