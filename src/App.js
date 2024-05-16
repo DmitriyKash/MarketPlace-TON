@@ -46,15 +46,15 @@ function App() {
             telegramWebApp.ready();
             telegramWebApp.expand();
         } else {
-            console.error("Telegram WebApp is not initialized");
+            console.error("Telegram WebApp не инициализирован");
         }
     };
 
     initTelegramWebApp();
 
-    // Retry initialization if not successful initially
+    // Повторить попытку через 500 мс, если не удалось
     const retryInit = setInterval(initTelegramWebApp, 500);
-    // Stop retrying after 5 seconds
+    // Остановить попытки через 5 секунд
     setTimeout(() => clearInterval(retryInit), 5000);
 }, []);
 

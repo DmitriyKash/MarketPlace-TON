@@ -37,12 +37,10 @@
               }
           };
 
-          // Попробовать инициализировать сразу
           initTelegramWebApp();
 
           // Повторить попытку через 500 мс, если не удалось
           const retryInit = setInterval(initTelegramWebApp, 500);
-
           // Остановить попытки через 5 секунд
           setTimeout(() => clearInterval(retryInit), 5000);
       });
