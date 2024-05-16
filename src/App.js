@@ -40,23 +40,16 @@ import { ProductProvider } from './components/ProductContext/ProductContext';
 
 function App() {
   useEffect(() => {
-    const initTelegramWebApp = () => {
-        if (window.Telegram && window.Telegram.WebApp) {
-            const telegramWebApp = window.Telegram.WebApp;
-            telegramWebApp.ready();
-            telegramWebApp.expand();
-        } else {
-            console.error("Telegram WebApp не инициализирован");
-        }
-    };
+    console.log('Initializing Telegram Web App...');
+    if (window.Telegram.WebApp) {
+      window.Telegram.WebApp.ready();
+    } else {
+      console.error('Telegram Web App not found');
+    }
+  }, []);
 
     initTelegramWebApp();
 
-    // Повторить попытку через 500 мс, если не удалось
-    const retryInit = setInterval(initTelegramWebApp, 500);
-    // Остановить попытки через 5 секунд
-    setTimeout(() => clearInterval(retryInit), 5000);
-}, []);
 
   return (
     <TonConnectUIProvider manifestUrl="https://harmonious-fenglisu-6d5f55.netlify.app/tonconnect-manifest.json">
