@@ -34,6 +34,17 @@
         binaryURL: '/assets/eversdk.wasm',
       };
     </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', (event) => {
+          const telegramWebApp = window.Telegram.WebApp;
+          telegramWebApp.ready();
+
+          // Запрос на полноэкранный режим
+          if (telegramWebApp.expand) {
+              telegramWebApp.expand();
+          }
+      });
+  </script>
        
   </body>
 </html>
