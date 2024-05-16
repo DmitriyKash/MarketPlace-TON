@@ -25,6 +25,28 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <script>
+      document.addEventListener('DOMContentLoaded', (event) => {
+          const initTelegramWebApp = () => {
+              if (window.Telegram && window.Telegram.WebApp) {
+                  const telegramWebApp = window.Telegram.WebApp;
+                  telegramWebApp.ready();
+                  telegramWebApp.expand();
+              } else {
+                  console.error("Telegram WebApp не инициализирован");
+              }
+          };
+
+          // Попробовать инициализировать сразу
+          initTelegramWebApp();
+
+          // Повторить попытку через 500 мс, если не удалось
+          const retryInit = setInterval(initTelegramWebApp, 500);
+
+          // Остановить попытки через 5 секунд
+          setTimeout(() => clearInterval(retryInit), 5000);
+      });
+  </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

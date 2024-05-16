@@ -39,25 +39,25 @@ import { ProductProvider } from './components/ProductContext/ProductContext';
 
 
 function App() {
-  useEffect(() => {
-    const initTelegramWebApp = () => {
-        if (window.Telegram && window.Telegram.WebApp) {
-            const telegramWebApp = window.Telegram.WebApp;
-            telegramWebApp.ready();
+//   useEffect(() => {
+//     const initTelegramWebApp = () => {
+//         if (window.Telegram && window.Telegram.WebApp) {
+//             const telegramWebApp = window.Telegram.WebApp;
+//             telegramWebApp.ready();
 
-            // Запрос на полноэкранный режим
-            telegramWebApp.expand();
-        } else {
-            console.error("Telegram WebApp не инициализирован");
-        }
-    };
+//             // Запрос на полноэкранный режим
+//             telegramWebApp.expand();
+//         } else {
+//             console.error("Telegram WebApp не инициализирован");
+//         }
+//     };
 
-    // Попробовать инициализировать сразу
-    initTelegramWebApp();
+//     // Попробовать инициализировать сразу
+//     initTelegramWebApp();
 
-    // Повторить попытку через 500 мс, если не удалось
-    setTimeout(initTelegramWebApp, 500);
-}, []);
+//     // Повторить попытку через 500 мс, если не удалось
+//     setTimeout(initTelegramWebApp, 500);
+// }, []);
 
   return (
     <TonConnectUIProvider manifestUrl="https://harmonious-fenglisu-6d5f55.netlify.app/tonconnect-manifest.json">
