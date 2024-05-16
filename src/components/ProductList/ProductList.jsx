@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, CardActionArea, CardContent, CardMedia, Typography, TextField, Grid, Container, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
+import { Card, CardActionArea, CardContent, CardMedia, Typography, TextField, Grid, Container, MenuItem, Select, InputLabel, FormControl, Pagination } from '@mui/material';
 import { useProducts } from '../ProductContext/ProductContext';
+
+const ITEMS_PER_PAGE = 10;
 
 function ProductList() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [category, setCategory] = useState('');
+  const [page, setPage] = useState(1);
   const { products } = useProducts();
 
   const filteredProducts = products.filter(product =>
@@ -27,8 +30,15 @@ function ProductList() {
     setCategory(event.target.value);
   };
 
-  // Получаем уникальные категории из продуктов
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
   const uniqueCategories = [...new Set(products.map(product => product.category))];
+
+  const startIndex = (page - 1) * ITEMS_PER_PAGE;
+  const paginatedProducts = filteredProducts.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const pageCount = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
 
   return (
     <Container>
@@ -56,7 +66,7 @@ function ProductList() {
         </Select>
       </FormControl>
       <Grid container spacing={4}>
-        {filteredProducts.map((product) => (
+        {paginatedProducts.map((product) => (
           <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
             <Card
               onClick={() => handleCardClick(product.id)}
@@ -86,6 +96,13 @@ function ProductList() {
           </Grid>
         ))}
       </Grid>
+      <Pagination
+        count={pageCount}
+        page={page}
+        onChange={handlePageChange}
+        color="primary"
+        sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}
+      />
     </Container>
   );
 }
