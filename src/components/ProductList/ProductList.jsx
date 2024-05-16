@@ -32,6 +32,7 @@ function ProductList() {
 
   const handlePageChange = (event, value) => {
     setPage(value);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const uniqueCategories = [...new Set(products.map(product => product.category))];
