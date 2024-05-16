@@ -21,7 +21,7 @@
 
 // export default App;
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import HomePage from './pages/HomePage';
@@ -39,25 +39,24 @@ import { ProductProvider } from './components/ProductContext/ProductContext';
 
 
 function App() {
-//   useEffect(() => {
-//     const initTelegramWebApp = () => {
-//         if (window.Telegram && window.Telegram.WebApp) {
-//             const telegramWebApp = window.Telegram.WebApp;
-//             telegramWebApp.ready();
+  useEffect(() => {
+    const initTelegramWebApp = () => {
+        if (window.Telegram && window.Telegram.WebApp) {
+            const telegramWebApp = window.Telegram.WebApp;
+            telegramWebApp.ready();
+            telegramWebApp.expand();
+        } else {
+            console.error("Telegram WebApp is not initialized");
+        }
+    };
 
-//             // Запрос на полноэкранный режим
-//             telegramWebApp.expand();
-//         } else {
-//             console.error("Telegram WebApp не инициализирован");
-//         }
-//     };
+    initTelegramWebApp();
 
-//     // Попробовать инициализировать сразу
-//     initTelegramWebApp();
-
-//     // Повторить попытку через 500 мс, если не удалось
-//     setTimeout(initTelegramWebApp, 500);
-// }, []);
+    // Retry initialization if not successful initially
+    const retryInit = setInterval(initTelegramWebApp, 500);
+    // Stop retrying after 5 seconds
+    setTimeout(() => clearInterval(retryInit), 5000);
+}, []);
 
   return (
     <TonConnectUIProvider manifestUrl="https://harmonious-fenglisu-6d5f55.netlify.app/tonconnect-manifest.json">
