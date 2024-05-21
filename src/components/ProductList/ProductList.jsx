@@ -58,7 +58,7 @@ function ProductList() {
 
   return (
     <Container>
-      <Box display="flex" justifyContent="space-between" alignItems="center" sx={{ mb: 2 }}>
+      <Box display="flex" justifyContent="space-between" alignItems="center" sx={{ mb: 2, mt: 2 }}>
         <TextField
           variant="outlined"
           placeholder="Поиск товаров..."
