@@ -68,7 +68,7 @@ function Login() {
             ref={tonConnectBtnRef}
             onLogin={(userData) => handleAuthentication(true, userData)}
             onLogout={() => handleAuthentication(false, null)}
-            style={{ display: 'none' }} // Скрываем оригинальную кнопку
+            style={{ opacity: 0, position: 'absolute', zIndex: -1 }} // Сделать кнопку невидимой, но кликабельной
           />
         </>
       )}
