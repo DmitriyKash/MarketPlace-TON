@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Button, Typography, Select, MenuItem, Accordion, AccordionSummary, AccordionDetails, Box } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Header from '../Header/Header';
-import LoginDialog from '../LoginDialog/LoginDialog'; // Импортируйте LoginDialog
+import LoginDialog from '../LoginDialog/LoginDialog';
 import { useAuth } from '../AuthContext/AuthContext';
 import { useProducts } from '../ProductContext/ProductContext';
 
@@ -18,16 +18,17 @@ function ProductDetails() {
   const product = products.find(p => p.id.toString() === id);
 
   useEffect(() => {
-    // Прокрутка окна в верхнюю часть при каждом монтировании компонента
     window.scrollTo(0, 0);
   }, [id]);
 
+  const handleBack = () => {
+    history.goBack();
+  };
 
   const handleBuy = () => {
     if (!isAuthenticated) {
         setLoginDialogOpen(true);
     } else {
-        // Перенаправление на страницу транзакции
         navigate('/transaction', {
             state: {
                 title: product.title,
@@ -46,12 +47,20 @@ function ProductDetails() {
   };
 
   if (!product) {
-    return <Typography>Продукт не найден</Typography>;
+    return (
+      <>
+        <Typography variant="h6" gutterBottom>Продукт не найден</Typography>
+        <Button variant="outlined" onClick={() => navigate('/')}>
+          Вернуться на главную
+        </Button>
+      </>
+    );
   }
 
   return (
     <>
       <Header />
+      <button onClick={handleBack}>Назад</button>
       <Box sx={{ p: 2, border: '1px solid #ccc', maxWidth: 400, margin: 'auto' }}>
         <img src={product.image} alt={product.title} style={{ maxWidth: '100%', height: 'auto' }} />
         <Typography variant="h5" gutterBottom>{product.title}</Typography>
