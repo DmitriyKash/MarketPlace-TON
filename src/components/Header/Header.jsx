@@ -40,7 +40,7 @@ function Header() {
           component="img"
           src="/img/Screenshot_299.png" // Замените на путь к вашему изображению
           alt="Мой Маркетплейс"
-          sx={{ flexGrow: 1, cursor: 'pointer', height: '50px', width: '100px' }} // Подберите нужную высоту для вашего изображения
+          sx={{ flexGrow: 1, cursor: 'pointer', height: '50px', width: '100px', marginLeft: '5px', marginRight: '5px'}} // Подберите нужную высоту для вашего изображения
           onClick={handleHomeClick}
         />
         <Login />
