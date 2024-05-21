@@ -30,7 +30,7 @@
 
 // export default Login;
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { TonConnectButton } from '@tonconnect/ui-react';
 import loginButtonImage from './img/login-image.png'; // Путь к изображению кнопки входа
 
