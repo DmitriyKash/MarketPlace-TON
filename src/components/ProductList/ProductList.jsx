@@ -43,7 +43,36 @@ function ProductList() {
 
   return (
     <Container>
-      <TextField
+      <Grid container spacing={2} alignItems="center">
+        <Grid item xs={12} sm={6}>
+          <TextField
+            variant="outlined"
+            placeholder="Поиск товаров..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+            fullWidth
+            margin="normal"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <FormControl fullWidth margin="normal">
+            <InputLabel>Категория</InputLabel>
+            <Select
+              value={category}
+              onChange={handleCategoryChange}
+              label="Категория"
+            >
+              <MenuItem value="">
+                <em>Все</em>
+              </MenuItem>
+              {uniqueCategories.map((cat) => (
+                <MenuItem key={cat} value={cat}>{cat}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
+      </Grid>
+      {/* <TextField
         variant="outlined"
         placeholder="Поиск товаров..."
         value={searchTerm}
@@ -65,7 +94,7 @@ function ProductList() {
             <MenuItem key={cat} value={cat}>{cat}</MenuItem>
           ))}
         </Select>
-      </FormControl>
+      </FormControl> */}
       <Grid container spacing={4}>
         {paginatedProducts.map((product) => (
           <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>

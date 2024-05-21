@@ -28,11 +28,7 @@ import HomePage from './pages/HomePage';
 import ProductDetails from'./components/ProductDetails/ProductDetails';
 import TransactionForm from './components/TransactionForm/TransactionForm';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
-// import ProfilePage from './pages/ProfilePage';
-// import CartPage from './pages/CartPage';
-// import CheckoutPage from './pages/CheckoutPage';
-// import AdminPage from './pages/AdminPage';
-import { CartProvider } from './pages/CartContext'; // Ensure this import is correct
+import { CartProvider } from './pages/CartContext';
 import AuthProvider from './components/AuthContext/AuthContext';
 import { ProductProvider } from './components/ProductContext/ProductContext';
 
@@ -61,11 +57,6 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/product/:id" element={<ProductDetails />} />
                 <Route path="/transaction" element={<TransactionForm />} />
-                {/* <Route path="/profile" element={<ProfilePage />} /> */}
-                {/* <Route path="/cart" element={<CartPage />} /> */}
-                {/* <Route path="/checkout" element={<CheckoutPage />} /> */}
-                {/* <Route path="/admin" element={<AdminPage />} /> */}
-                {/* You can add other routes here */}
             </Routes>
             </div>
         </CartProvider>
