@@ -31,7 +31,7 @@
 // export default Login;
 
 import React, { useState } from 'react';
-import loginButtonImage from '/img/login-image.png'; // Путь к изображению кнопки входа
+import loginButtonImage from './img/login-image.png'; // Путь к изображению кнопки входа
 import logoutButtonImage from 'path/to/logout-image.png'; // Путь к изображению кнопки выхода
 
 function Login() {
