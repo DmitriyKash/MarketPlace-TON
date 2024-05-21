@@ -32,7 +32,7 @@
 
 import React, { useState } from 'react';
 import loginButtonImage from './img/login-image.png'; // Путь к изображению кнопки входа
-import logoutButtonImage from 'path/to/logout-image.png'; // Путь к изображению кнопки выхода
+import logoutButtonImage from './img/login-image.png';
 
 function Login() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
