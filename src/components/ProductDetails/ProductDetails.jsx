@@ -60,7 +60,7 @@ function ProductDetails() {
     <>
       <Header />
       <Container maxWidth="md">
-        <Button variant="contained" color="primary" onClick={handleBack} sx={{ mb: 2 }}>
+        <Button variant="contained" color="primary" onClick={handleBack} sx={{ mb: 2, mt: 2 }}>
           Назад
         </Button>
         <Box sx={{ p: 2, border: '1px solid #ccc', borderRadius: '8px', boxShadow: 3 }}>
