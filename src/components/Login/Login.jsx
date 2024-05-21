@@ -31,16 +31,22 @@
 // export default Login;
 
 import React, { useState } from 'react';
+import { TonConnectButton } from '@tonconnect/ui-react';
 import loginButtonImage from './img/login-image.png'; // Путь к изображению кнопки входа
-import logoutButtonImage from './img/login-image.png';
+
 
 function Login() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
+  const tonConnectBtnRef = useRef(null); // Создаем референс для кнопки TON Connect
 
   const handleAuthentication = (status, userData) => {
     setIsAuthenticated(status);
     setUser(userData);
+  };
+
+  const simulateTonConnectClick = () => {
+    tonConnectBtnRef.current?.click(); // Симуляция клика на TonConnectButton
   };
 
   return (
@@ -48,20 +54,23 @@ function Login() {
       {isAuthenticated ? (
         <div>
           <p>Пользователь: {user ? user.name : 'Нет данных'}</p>
-          <img
-            src={logoutButtonImage}
-            alt="Выйти"
-            onClick={() => handleAuthentication(false, null)}
-            style={{ cursor: 'pointer' }}
-          />
+          <button onClick={() => handleAuthentication(false, null)}>Выйти</button>
         </div>
       ) : (
-        <img
-          src={loginButtonImage}
-          alt="Подключить кошелек"
-          onClick={() => handleAuthentication(true, {})} // Подразумевается, что нужные данные пользователя передаются здесь
-          style={{ cursor: 'pointer' }}
-        />
+        <>
+          <img
+            src={loginButtonImage}
+            alt="Подключить кошелек"
+            onClick={simulateTonConnectClick}
+            style={{ cursor: 'pointer' }}
+          />
+          <TonConnectButton
+            ref={tonConnectBtnRef}
+            onLogin={(userData) => handleAuthentication(true, userData)}
+            onLogout={() => handleAuthentication(false, null)}
+            style={{ display: 'none' }} // Скрываем оригинальную кнопку
+          />
+        </>
       )}
     </div>
   );
