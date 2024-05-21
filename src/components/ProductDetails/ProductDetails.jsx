@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button, Typography, Select, MenuItem, Accordion, AccordionSummary, AccordionDetails, Box } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -16,6 +16,11 @@ function ProductDetails() {
   const [loginDialogOpen, setLoginDialogOpen] = useState(false);
   const { products } = useProducts();
   const product = products.find(p => p.id.toString() === id);
+
+  useEffect(() => {
+    // Прокрутка окна в верхнюю часть при каждом монтировании компонента
+    window.scrollTo(0, 0);
+  }, [id]);
 
 
   const handleBuy = () => {
