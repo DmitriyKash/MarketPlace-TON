@@ -22,7 +22,7 @@ function ProductDetails() {
   }, [id]);
 
   const handleBack = () => {
-    history.goBack();
+    navigate(-1); // Эквивалентно history.goBack() в предыдущих версиях
   };
 
   const handleBuy = () => {
