@@ -1,6 +1,21 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, CardActionArea, CardContent, CardMedia, Typography, TextField, Grid, Container, MenuItem, Select, InputLabel, FormControl, Pagination } from '@mui/material';
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Typography,
+  TextField,
+  Grid,
+  Container,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
+  Pagination,
+  Box
+} from '@mui/material';
 import { useProducts } from '../ProductContext/ProductContext';
 
 const ITEMS_PER_PAGE = 10;
@@ -43,29 +58,31 @@ function ProductList() {
 
   return (
     <Container>
-      <TextField
-        variant="outlined"
-        placeholder="Поиск товаров..."
-        value={searchTerm}
-        onChange={handleSearchChange}
-        fullWidth
-        margin="normal"
-      />
-      <FormControl fullWidth margin="normal">
-        <InputLabel>Категория</InputLabel>
-        <Select
-          value={category}
-          onChange={handleCategoryChange}
-          label="Категория"
-        >
-          <MenuItem value="">
-            <em>Все</em>
-          </MenuItem>
-          {uniqueCategories.map((cat) => (
-            <MenuItem key={cat} value={cat}>{cat}</MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      <Box display="flex" justifyContent="space-between" alignItems="center" sx={{ mb: 2 }}>
+        <TextField
+          variant="outlined"
+          placeholder="Поиск товаров..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+          fullWidth
+          sx={{ mr: 2 }}
+        />
+        <FormControl sx={{ minWidth: 200 }}>
+          <InputLabel>Категория</InputLabel>
+          <Select
+            value={category}
+            onChange={handleCategoryChange}
+            label="Категория"
+          >
+            <MenuItem value="">
+              <em>Все</em>
+            </MenuItem>
+            {uniqueCategories.map((cat) => (
+              <MenuItem key={cat} value={cat}>{cat}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
       <Grid container spacing={4}>
         {paginatedProducts.map((product) => (
           <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
