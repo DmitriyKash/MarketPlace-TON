@@ -21,7 +21,6 @@ function Login() {
         <TonConnectButton 
           onLogin={(userData) => handleAuthentication(true, userData)}
           onLogout={() => handleAuthentication(false, null)}
-          style={{ backgroundColor: 'blue', color: 'white', width: '200px' }} // Увеличенная ширина для лучшего отображения текста
         />
       )}
     </div>
