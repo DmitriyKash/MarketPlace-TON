@@ -7,7 +7,6 @@ import LoginDialog from '../LoginDialog/LoginDialog';
 import { useAuth } from '../AuthContext/AuthContext';
 import { useProducts } from '../ProductContext/ProductContext';
 
-
 function ProductDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -27,20 +26,20 @@ function ProductDetails() {
 
   const handleBuy = () => {
     if (!isAuthenticated) {
-        setLoginDialogOpen(true);
+      setLoginDialogOpen(true);
     } else {
-        navigate('/transaction', {
-            state: {
-                title: product.title,
-                image: product.image,
-                description: product.description,
-                price: product.price,
-                lotInfo: product.lotInfo,
-                shippingInfo: product.shippingInfo
-            }
-        });
+      navigate('/transaction', {
+        state: {
+          title: product.title,
+          image: product.image,
+          description: product.description,
+          price: product.price,
+          lotInfo: product.lotInfo,
+          shippingInfo: product.shippingInfo
+        }
+      });
     }
-};
+  };
 
   const handleChangeSize = (event) => {
     setSize(event.target.value);
@@ -60,7 +59,11 @@ function ProductDetails() {
   return (
     <>
       <Header />
-      <button onClick={handleBack}>Назад</button>
+      <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+        <Button variant="contained" color="primary" onClick={handleBack}>
+          Назад
+        </Button>
+      </Box>
       <Box sx={{ p: 2, border: '1px solid #ccc', maxWidth: 400, margin: 'auto' }}>
         <img src={product.image} alt={product.title} style={{ maxWidth: '100%', height: 'auto' }} />
         <Typography variant="h5" gutterBottom>{product.title}</Typography>
