@@ -59,7 +59,7 @@ function ProductDetails() {
   return (
     <>
       <Header />
-      <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-start', mb: 2, mt: 2 }}>
         <Button variant="contained" color="primary" onClick={handleBack}>
           Назад
         </Button>
