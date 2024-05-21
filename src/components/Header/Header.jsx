@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import Login from '../Login/Login';
@@ -11,6 +11,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
+import Box from '@mui/material/Box';
 
 function Header() {
   const [open, setOpen] = useState(false);
@@ -26,7 +27,7 @@ function Header() {
 
   const handleLinkClick = (path) => {
     navigate(path);
-    setOpen(false); // Закрыть Drawer после выбора
+    setOpen(false);
   };
 
   return (
@@ -35,9 +36,13 @@ function Header() {
         <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleDrawer}>
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" style={{ flexGrow: 1, cursor: 'pointer' }} onClick={handleHomeClick}>
-          Мой Маркетплейс
-        </Typography>
+        <Box
+          component="img"
+          src="/img/Безымянный.png" // Замените на путь к вашему изображению
+          alt="Мой Маркетплейс"
+          sx={{ flexGrow: 1, cursor: 'pointer', height: '50px' }} // Подберите нужную высоту для вашего изображения
+          onClick={handleHomeClick}
+        />
         <Login />
       </Toolbar>
       <Drawer open={open} onClose={handleDrawer}>
