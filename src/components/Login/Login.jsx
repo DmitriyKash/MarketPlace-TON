@@ -21,7 +21,7 @@ function Login() {
         <TonConnectButton 
           onLogin={(userData) => handleAuthentication(true, userData)}
           onLogout={() => handleAuthentication(false, null)}
-          style={{ backgroundColor: 'blue', color: 'white' }} // Пример изменения фона и цвета текста
+          style={{ backgroundColor: 'blue', color: 'white', width: '20px' }} // Пример изменения фона и цвета текста
         />
       )}
     </div>
